@@ -1,0 +1,92 @@
+/* DEEPSANTA — Colore
+   Palette a doppio registro. Otto colori, mai tutti insieme.
+   Ogni artefatto vive in UN SOLO registro: TERRA (chiaro) o MARE (scuro).
+   Il rosso corallo è l'unico colore che attraversa entrambi i registri. */
+
+:root {
+  /* ---- REGISTRO TERRA — superficie, luce, comunità ---- */
+  --ds-sabbia: #E4E2D2;   /* sand — fondo dominante chiaro */
+  --ds-osso: #F4F2E9;     /* bone — bianco caldo: carta, testo su scuro */
+  --ds-oro: #B8923A;      /* gold — sole, calore. Solo campiture */
+  --ds-inchiostro: #14120E; /* ink — testo e display su registro chiaro */
+
+  /* ---- REGISTRO MARE — profondità, vita, modulo ---- */
+  --ds-blu: #003060;      /* deep blue — primario, firma del brand */
+  --ds-abisso: #001012;   /* abyss — fondi notturni, manifesti scuri */
+  --ds-turchese: #23B1A0; /* turquoise — vita marina, "sott'acqua" */
+
+  /* ---- IL PONTE — attraversa i due registri ---- */
+  --ds-corallo: #D6402E;  /* coral red — la firma. Un solo uso per artefatto */
+
+  /* ---- Tinte di testo derivate (contrasto sui fondi) ---- */
+  --ds-su-blu: #CFE0EF;       /* testo su blu profondo */
+  --ds-su-abisso: #9FC7C0;    /* testo su abisso */
+  --ds-su-turchese: #06433B;  /* testo su turchese */
+  --ds-su-oro: #2A1F08;       /* testo su oro */
+  --ds-su-corallo: #FBE4DD;   /* testo su corallo */
+
+  /* ---- Grigi funzionali ---- */
+  --ds-terra-muted: #5A584C;  /* mono/label opaco su chiaro */
+  --ds-mare-muted: #9FB3C4;   /* mono/label opaco su scuro */
+  --ds-hairline-terra: rgba(20, 18, 14, 0.18);  /* filetti su chiaro */
+  --ds-hairline-mare: rgba(244, 242, 233, 0.22); /* filetti su scuro */
+
+  /* ============================================================
+     ALIAS SEMANTICI — registro TERRA (default, tema chiaro)
+     ============================================================ */
+  --surface-page: var(--ds-sabbia);
+  --surface-card: var(--ds-osso);
+  --surface-raised: #FFFFFF;
+  --text-strong: var(--ds-inchiostro);
+  --text-body: var(--ds-inchiostro);
+  --text-muted: var(--ds-terra-muted);
+  --text-mono: var(--ds-terra-muted);
+  --accent: var(--ds-corallo);
+  --accent-on: var(--ds-su-corallo);
+  --signature: var(--ds-blu);
+  --tide: var(--ds-turchese);   /* "sotto la linea d'acqua" */
+  --sun: var(--ds-oro);
+  --hairline: var(--ds-hairline-terra);
+  --waterline: var(--ds-turchese);
+}
+
+/* ============================================================
+   REGISTRO MARE — tema scuro.
+   Applica .registro-mare (o data-registro="mare") al contenitore.
+   ============================================================ */
+.registro-mare,
+[data-registro="mare"] {
+  --surface-page: var(--ds-blu);
+  --surface-card: #0A3A66;       /* blu leggermente sollevato */
+  --surface-raised: #0E4577;
+  --text-strong: var(--ds-osso);
+  --text-body: var(--ds-su-blu);
+  --text-muted: var(--ds-mare-muted);
+  --text-mono: var(--ds-mare-muted);
+  --accent: var(--ds-corallo);
+  --accent-on: var(--ds-su-corallo);
+  --signature: var(--ds-turchese);
+  --tide: var(--ds-turchese);
+  --sun: var(--ds-oro);
+  --hairline: var(--ds-hairline-mare);
+  --waterline: var(--ds-turchese);
+}
+
+/* Variante abisso — la notte più profonda (Stanza Marina) */
+.registro-abisso,
+[data-registro="abisso"] {
+  --surface-page: var(--ds-abisso);
+  --surface-card: #04222A;
+  --surface-raised: #06303A;
+  --text-strong: var(--ds-osso);
+  --text-body: var(--ds-su-abisso);
+  --text-muted: var(--ds-mare-muted);
+  --text-mono: var(--ds-mare-muted);
+  --accent: var(--ds-corallo);
+  --accent-on: var(--ds-su-corallo);
+  --signature: var(--ds-turchese);
+  --tide: var(--ds-turchese);
+  --sun: var(--ds-oro);
+  --hairline: var(--ds-hairline-mare);
+  --waterline: var(--ds-turchese);
+}

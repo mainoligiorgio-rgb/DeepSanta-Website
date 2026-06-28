@@ -1,0 +1,33 @@
+/* DEEPSANTA — Spazio, griglia, raggi
+   Ritmo basato su 8px. La pagina respira: la sottrazione è un principio. */
+
+:root {
+  /* ---- Scala di spazio (base 8) ---- */
+  --space-1: 0.25rem;   /* 4 */
+  --space-2: 0.5rem;    /* 8 */
+  --space-3: 0.75rem;   /* 12 */
+  --space-4: 1rem;      /* 16 */
+  --space-5: 1.5rem;    /* 24 */
+  --space-6: 2rem;      /* 32 */
+  --space-7: 3rem;      /* 48 */
+  --space-8: 4rem;      /* 64 */
+  --space-9: 6rem;      /* 96 */
+  --space-10: 8rem;     /* 128 */
+
+  /* ---- Margini di pagina / gutter ---- */
+  --gutter: clamp(1.25rem, 5vw, 6.25rem); /* @kind spacing */ /* margine ampio dei manifesti */
+  --measure: 62ch;                         /* lunghezza riga di lettura */
+  --container: 1200px;
+
+  /* ---- Raggi d'angolo ---- */
+  --radius-none: 0;        /* i tre quadratini, campiture tecniche */
+  --radius-sm: 6px;
+  --radius-md: 12px;       /* card standard */
+  --radius-lg: 14px;       /* card grandi (tavole) */
+  --radius-pill: 999px;    /* tag, capsule */
+
+  /* ---- Spessori di linea ---- */
+  --stroke-hairline: 1px;
+  --stroke-rule: 2px;      /* filetto sotto i titoli */
+  --stroke-waterline: 3px; /* la linea d'acqua: 2–6pt */
+}

@@ -1,0 +1,51 @@
+<!-- @dsCard group="Sito evento" viewport="1280x820" name="Sito evento — home" subtitle="DeepSanta · home, programma, atto, info & biglietti (interattivo)" -->
+<!-- @startingPoint section="Sito evento" subtitle="Sito dell'evento DeepSanta, click-through" viewport="1280x820" -->
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>DeepSanta — Una discesa in tre atti</title>
+<link rel="stylesheet" href="./styles.css" />
+<style>
+  html, body { margin: 0; background: var(--ds-abisso); }
+  * { box-sizing: border-box; }
+  ::selection { background: var(--ds-turchese); color: var(--ds-abisso); }
+  @keyframes ds-blink { 0%, 60% { opacity: 1; } 61%, 100% { opacity: 0.25; } }
+</style>
+<script crossorigin src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm"></script>
+<script crossorigin src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y"></script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel" src="kit.jsx"></script>
+<script type="text/babel" src="chrome.jsx"></script>
+<script type="text/babel" src="screens.jsx"></script>
+<script type="text/babel" src="exvoto.jsx"></script>
+<script type="text/babel" src="reef.jsx"></script>
+<script type="text/babel">
+  function App() {
+    const [route, setRoute] = React.useState(() => {
+      try { return JSON.parse(localStorage.getItem("ds_route")) || { screen: "home", atto: "sole" }; }
+      catch (e) { return { screen: "home", atto: "sole" }; }
+    });
+    const go = React.useCallback((screen, atto) => {
+      const next = { screen, atto: atto || route.atto || "sole" };
+      setRoute(next);
+      try { localStorage.setItem("ds_route", JSON.stringify(next)); } catch (e) {}
+      window.scrollTo({ top: 0, behavior: "auto" });
+    }, [route.atto]);
+
+    const { Home, Programma, Atto, Info, ExVoto, Reef } = window;
+    if (route.screen === "programma") return <Programma go={go} />;
+    if (route.screen === "atto") return <Atto go={go} attoId={route.atto} />;
+    if (route.screen === "exvoto") return <ExVoto go={go} />;
+    if (route.screen === "reef") return <Reef go={go} />;
+    if (route.screen === "info") return <Info go={go} />;
+    return <Home go={go} />;
+  }
+  ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+</script>
+</body>
+</html>

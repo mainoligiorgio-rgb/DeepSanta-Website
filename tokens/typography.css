@@ -1,0 +1,85 @@
+/* DEEPSANTA — Tipografia
+   Cinque voci, due modi. Il modo display (Syne) e il modo illustrato
+   (Bricolage) non convivono mai nello stesso artefatto. */
+
+:root {
+  /* ---- Famiglie ---- */
+  --font-display: "Syne", "Arial Black", sans-serif;        /* voce monumento + statement */
+  --font-illustrated: "Bricolage Grotesque", "Syne", sans-serif; /* headline illustrata */
+  --font-poetic: "Instrument Serif", Georgia, serif;        /* voce poetica (corsivo) */
+  --font-mono: "DM Mono", "SFMono-Regular", ui-monospace, monospace; /* voce tecnica */
+  --font-body: "Syne", system-ui, sans-serif;               /* corpo testo */
+
+  /* ---- Pesi ---- */
+  --weight-body: 600;
+  --weight-statement: 700;
+  --weight-monument: 800;
+
+  /* ---- Scala tipografica (valori schermo) ----
+     Monumento · Statement · Titolo sezione · Poetica · Corpo · Tecnica  */
+  --type-monument: clamp(3.5rem, 9vw, 7.5rem);    /* 72–120px — Syne 800 */
+  --type-statement: clamp(2rem, 4vw, 2.75rem);    /* 32–44px — Syne 700 */
+  --type-section: clamp(1.5rem, 2.4vw, 1.875rem); /* 24–30px — Syne 800 */
+  --type-poetic: clamp(1.625rem, 2.6vw, 2.125rem);/* 26–34px — Instrument Italic */
+  --type-body-lg: 1.25rem;   /* 20px */
+  --type-body: 1.0625rem;    /* 17px — Corpo testo 16–18 */
+  --type-small: 0.9375rem;   /* 15px */
+  --type-technical: 0.8125rem; /* 13px — Tecnica/dati, DM Mono */
+  --type-micro: 0.6875rem;   /* 11px — micro label */
+
+  /* ---- Interlinea ---- */
+  --leading-monument: 0.94;  /* parole-monumento serrate */
+  --leading-tight: 1.05;
+  --leading-snug: 1.25;
+  --leading-body: 1.5;
+
+  /* ---- Tracking ---- */
+  --tracking-mono: 0.16em;   /* DM Mono etichette: maiuscoletto tracciato */
+  --tracking-mono-tight: 0.08em;
+  --tracking-monument: 0.01em;
+  --tracking-tight: -0.01em;
+}
+
+/* ---- Classi-voce pronte all'uso ---- */
+.voce-monumento {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--type-monument);
+  line-height: var(--leading-monument);
+  letter-spacing: var(--tracking-monument);
+  text-transform: uppercase;
+}
+.voce-statement {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--type-statement);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+}
+.voce-illustrata {
+  font-family: var(--font-illustrated);
+  font-weight: 800;
+  font-size: var(--type-statement);
+  line-height: var(--leading-tight);
+  text-transform: uppercase;
+}
+.voce-poetica {
+  font-family: var(--font-poetic);
+  font-style: italic;
+  font-weight: 400;
+  font-size: var(--type-poetic);
+  line-height: var(--leading-snug);
+}
+.voce-tecnica {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: var(--type-technical);
+  letter-spacing: var(--tracking-mono);
+  text-transform: uppercase;
+}
+.voce-corpo {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: var(--type-body);
+  line-height: var(--leading-body);
+}

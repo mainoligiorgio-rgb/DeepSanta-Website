@@ -1,0 +1,11 @@
+/* ============================================================
+   DEEPSANTA — Design System v1.0
+   Identità visiva · Santa Margherita Ligure
+   Punto d'ingresso globale: solo @import.
+   ============================================================ */
+
+@import "fonts/fonts.css";
+@import "tokens/colors.css";
+@import "tokens/typography.css";
+@import "tokens/spacing.css";
+@import "tokens/effects.css";
