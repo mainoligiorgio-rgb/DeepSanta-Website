@@ -58,6 +58,9 @@ function ReefStat({ k, v }) {
 }
 
 function Reef({ go }) {
+  const vw = useViewport();
+  const narrow = vw <= 900;
+  const galCols = vw <= 560 ? "1fr" : vw <= 900 ? "repeat(2, 1fr)" : "repeat(3, 1fr)";
   return (
     <div className="registro-abisso" data-registro="abisso" style={{ background: "var(--ds-abisso)", color: "var(--ds-su-abisso)", minHeight: "100vh" }}>
       <Nav go={go} current="reef" light />
@@ -79,7 +82,7 @@ function Reef({ go }) {
 
       {/* Dati del reef */}
       <section style={{ borderTop: "1px solid var(--ds-hairline-mare)", padding: "clamp(40px, 6vw, 80px) clamp(20px, 5vw, 64px)" }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: "1.1fr 0.9fr", gap: "clamp(32px, 6vw, 72px)", alignItems: "start" }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: narrow ? "1fr" : "1.1fr 0.9fr", gap: "clamp(32px, 6vw, 72px)", alignItems: "start" }}>
           <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
             <Eyebrow mark="dot" color="var(--ds-turchese)">Il sistema</Eyebrow>
             <h2 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "var(--type-statement)", lineHeight: 1.05, margin: 0, color: "var(--ds-osso)" }}>
@@ -112,7 +115,7 @@ function Reef({ go }) {
             <h2 style={{ fontFamily: "var(--font-display)", fontWeight: 800, fontSize: "var(--type-statement)", textTransform: "uppercase", lineHeight: 1, margin: 0, color: "var(--ds-osso)" }}>La vita sul reef</h2>
             <Eyebrow color="var(--ds-mare-muted)">Render dal progetto</Eyebrow>
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "clamp(16px, 2.2vw, 24px)" }}>
+          <div style={{ display: "grid", gridTemplateColumns: galCols, gap: "clamp(16px, 2.2vw, 24px)" }}>
             <ReefFrame src={RU + "dolphin.png"} label="I delfini tornano al reef" />
             <ReefFrame src={RU + "turtle.png"} label="La tartaruga tra le volte" />
             <ReefFrame src={RU + "seahorse.png"} label="Il cavalluccio sulle gorgonie" />

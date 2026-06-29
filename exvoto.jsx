@@ -41,6 +41,9 @@ function KitFrame({ kit }) {
 }
 
 function ExVoto({ go }) {
+  const vw = useViewport();
+  const narrow = vw <= 900;
+  const kitCols = vw <= 560 ? "1fr" : vw <= 900 ? "repeat(2, 1fr)" : "repeat(3, 1fr)";
   return (
     <div style={{ background: "var(--ds-sabbia)", color: "var(--ds-inchiostro)", minHeight: "100vh" }}>
       {/* Hero — registro mare */}
@@ -64,7 +67,7 @@ function ExVoto({ go }) {
 
       {/* Concept + collezione */}
       <section style={{ padding: "clamp(48px, 7vw, 96px) clamp(20px, 5vw, 64px)" }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1.05fr", gap: "clamp(32px, 6vw, 72px)", alignItems: "center" }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: narrow ? "1fr" : "1fr 1.05fr", gap: "clamp(32px, 6vw, 72px)", alignItems: "center" }}>
           <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
             <Eyebrow mark="dot">Cosa è</Eyebrow>
             <h2 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "var(--type-statement)", lineHeight: 1.05, margin: 0 }}>
@@ -93,7 +96,7 @@ function ExVoto({ go }) {
             <h2 style={{ fontFamily: "var(--font-display)", fontWeight: 800, fontSize: "var(--type-monument)", textTransform: "uppercase", lineHeight: 0.94, margin: 0 }}>Tre kit</h2>
             <Eyebrow color="var(--ds-terra-muted)">Una collezione, tre devozioni</Eyebrow>
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "clamp(18px, 2.4vw, 28px)" }}>
+          <div style={{ display: "grid", gridTemplateColumns: kitCols, gap: "clamp(18px, 2.4vw, 28px)" }}>
             {Object.values(KITS).map((kit) => (
               <div key={kit.id} style={{ display: "flex", flexDirection: "column", gap: 14 }}>
                 <KitFrame kit={kit} />
@@ -111,7 +114,7 @@ function ExVoto({ go }) {
 
       {/* Dentro il kit */}
       <section style={{ background: "var(--ds-osso)", padding: "clamp(48px, 7vw, 96px) clamp(20px, 5vw, 64px)" }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: "1.1fr 0.9fr", gap: "clamp(32px, 6vw, 72px)", alignItems: "center" }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: narrow ? "1fr" : "1.1fr 0.9fr", gap: "clamp(32px, 6vw, 72px)", alignItems: "center" }}>
           <div style={{ borderRadius: "var(--radius-md)", overflow: "hidden", boxShadow: "var(--shadow-card)", background: "var(--ds-blu)" }}>
             <img src={U + "kit1.png"} alt="Dentro il kit Ex Voto" style={{ width: "100%", display: "block" }} />
           </div>
@@ -129,7 +132,7 @@ function ExVoto({ go }) {
 
       {/* Come si costruisce */}
       <section style={{ padding: "clamp(48px, 7vw, 96px) clamp(20px, 5vw, 64px)" }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 0.85fr", gap: "clamp(32px, 6vw, 72px)", alignItems: "start" }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: narrow ? "1fr" : "1fr 0.85fr", gap: "clamp(32px, 6vw, 72px)", alignItems: "start" }}>
           <div>
             <Eyebrow mark="dot">Come si costruisce</Eyebrow>
             <h2 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "var(--type-statement)", lineHeight: 1.05, margin: "16px 0 30px" }}>
@@ -147,7 +150,7 @@ function ExVoto({ go }) {
               ))}
             </div>
           </div>
-          <div style={{ borderRadius: "var(--radius-md)", overflow: "hidden", boxShadow: "var(--shadow-card)", position: "sticky", top: 88, background: "#2A2520" }}>
+          <div style={{ borderRadius: "var(--radius-md)", overflow: "hidden", boxShadow: "var(--shadow-card)", position: narrow ? "static" : "sticky", top: 88, background: "#2A2520" }}>
             <img src={U + "exvoto1.png"} alt="Il banco di lavoro dell'ex voto" style={{ width: "100%", display: "block" }} />
           </div>
         </div>
@@ -156,7 +159,7 @@ function ExVoto({ go }) {
       {/* Galleria digitale — registro abisso */}
       <section className="registro-abisso" data-registro="abisso" style={{ position: "relative", overflow: "hidden", background: "var(--ds-abisso)", color: "var(--ds-su-abisso)", padding: "clamp(48px, 7vw, 96px) clamp(20px, 5vw, 64px)" }}>
         <Rays opacity={0.32} />
-        <div style={{ position: "relative", maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: "0.95fr 1.05fr", gap: "clamp(32px, 6vw, 72px)", alignItems: "center" }}>
+        <div style={{ position: "relative", maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: narrow ? "1fr" : "0.95fr 1.05fr", gap: "clamp(32px, 6vw, 72px)", alignItems: "center" }}>
           <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
             <Eyebrow mark="dot" color="var(--ds-turchese)">Galleria digitale</Eyebrow>
             <h2 style={{ fontFamily: "var(--font-display)", fontWeight: 800, fontSize: "var(--type-statement)", lineHeight: 1.04, margin: 0, color: "var(--ds-osso)" }}>

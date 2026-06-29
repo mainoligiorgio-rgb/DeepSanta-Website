@@ -53,6 +53,8 @@ const SCHEDULE = {
 
 /* ---------- HOME ---------- */
 function Home({ go }) {
+  const vw = useViewport();
+  const narrow = vw <= 900;
   return (
     <div>
       <header className="registro-mare" data-registro="mare" style={{ position: "relative", overflow: "hidden", background: "var(--gradient-discesa)", minHeight: "92vh", display: "flex", flexDirection: "column" }}>
@@ -63,7 +65,7 @@ function Home({ go }) {
         </div>
         <div style={{ position: "relative", zIndex: 5, flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", textAlign: "center", padding: "40px clamp(20px, 5vw, 64px) 80px", gap: 26 }}>
           <Eyebrow mark="dot" color="var(--ds-osso)">Santa Margherita Ligure · 03—08 GIU 2026</Eyebrow>
-          <WaterlineWordmark text="DEEPSANTA" width={Math.min(800, 0.88 * (typeof window !== "undefined" ? window.innerWidth : 800))} above="var(--ds-osso)" style={{ maxWidth: "92vw" }} />
+          <WaterlineWordmark text="DEEPSANTA" width={Math.min(800, 0.88 * vw)} above="var(--ds-osso)" style={{ maxWidth: "92vw" }} />
           <p style={{ fontFamily: "var(--font-poetic)", fontStyle: "italic", fontSize: "var(--type-poetic)", color: "var(--ds-su-blu)", margin: "4px 0 0", maxWidth: 520 }}>
             una discesa in tre atti — scendi, dove rinasce la vita
           </p>
@@ -79,7 +81,7 @@ function Home({ go }) {
 
       {/* Banda intro — registro terra */}
       <section style={{ background: "var(--ds-sabbia)", color: "var(--ds-inchiostro)", padding: "clamp(56px, 8vw, 110px) clamp(20px, 5vw, 64px)" }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: "1.1fr 1fr", gap: "clamp(32px, 6vw, 80px)", alignItems: "center" }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: narrow ? "1fr" : "1.1fr 1fr", gap: "clamp(32px, 6vw, 80px)", alignItems: "center" }}>
           <div style={{ display: "flex", flexDirection: "column", gap: 22 }}>
             <Eyebrow mark="dot">Il rito</Eyebrow>
             <h2 className="voce-statement" style={{ margin: 0, fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "var(--type-statement)", lineHeight: 1.05 }}>
@@ -110,7 +112,7 @@ function Home({ go }) {
       {/* Teaser Ex Voto — registro abisso */}
       <section className="registro-abisso" data-registro="abisso" style={{ position: "relative", overflow: "hidden", background: "var(--ds-abisso)", color: "var(--ds-su-abisso)", padding: "clamp(48px, 7vw, 96px) clamp(20px, 5vw, 64px)" }}>
         <Rays opacity={0.3} />
-        <div style={{ position: "relative", maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: "1.05fr 0.95fr", gap: "clamp(28px, 5vw, 64px)", alignItems: "center" }}>
+        <div style={{ position: "relative", maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: narrow ? "1fr" : "1.05fr 0.95fr", gap: "clamp(28px, 5vw, 64px)", alignItems: "center" }}>
           <div style={{ display: "flex", flexDirection: "column", gap: 18, maxWidth: "52ch" }}>
             <Eyebrow mark="dot" color="var(--ds-turchese)">Ex Voto Vivente</Eyebrow>
             <h2 style={{ margin: 0, fontFamily: "var(--font-display)", fontWeight: 800, fontSize: "var(--type-statement)", lineHeight: 1.04, color: "var(--ds-osso)" }}>
@@ -153,6 +155,8 @@ function DayBlock({ day, dark }) {
 
 function Programma({ go }) {
   const [open, setOpen] = React.useState("forma");
+  const vw = useViewport();
+  const narrow = vw <= 900;
   return (
     <div style={{ background: "var(--ds-sabbia)", color: "var(--ds-inchiostro)", minHeight: "100vh" }}>
       <Nav go={go} current="programma" />
@@ -185,7 +189,7 @@ function Programma({ go }) {
                     <span aria-hidden="true" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: 40, height: 40, borderRadius: "50%", border: "1.5px solid var(--ds-inchiostro)", fontFamily: "var(--font-mono)", fontSize: "1.4rem", lineHeight: 1, transform: isOpen ? "rotate(45deg)" : "none", transition: "transform var(--dur) var(--ease-tide)" }}>+</span>
                   </button>
                   {isOpen && (
-                    <div style={{ padding: "8px 10px 36px", display: "grid", gridTemplateColumns: SCHEDULE[a.id].length > 1 ? "1fr 1fr" : "1fr", gap: "clamp(28px, 5vw, 56px)" }}>
+                    <div style={{ padding: "8px 10px 36px", display: "grid", gridTemplateColumns: (!narrow && SCHEDULE[a.id].length > 1) ? "1fr 1fr" : "1fr", gap: "clamp(28px, 5vw, 56px)" }}>
                       {SCHEDULE[a.id].map((day, i) => <DayBlock key={i} day={day} dark={false} />)}
                       <div style={{ gridColumn: "1 / -1", marginTop: 6 }}>
                         <button onClick={() => go("atto", a.id)} style={{ all: "unset", cursor: "pointer", display: "inline-flex", alignItems: "center", gap: 8, fontFamily: "var(--font-mono)", fontSize: "0.78rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--ds-blu)", borderBottom: "2px solid var(--ds-turchese)", paddingBottom: 3 }}>
@@ -209,6 +213,8 @@ function Programma({ go }) {
 function Atto({ go, attoId }) {
   const a = ATTI[attoId] || ATTI.sole;
   const dark = a.registro !== "terra";
+  const vw = useViewport();
+  const narrow = vw <= 900;
   const heroBg = a.id === "sole" ? "linear-gradient(180deg,#F4F2E9 0%, #E4E2D2 100%)"
     : a.id === "forma" ? "linear-gradient(180deg,#E9E7D8 0%, #E0DCC9 100%)"
     : "var(--gradient-discesa)";
@@ -233,7 +239,7 @@ function Atto({ go, attoId }) {
         </div>
       </header>
       <section style={{ padding: "clamp(40px, 6vw, 80px) clamp(20px, 5vw, 64px)" }}>
-        <div style={{ maxWidth: 1000, margin: "0 auto", display: "grid", gridTemplateColumns: "1.3fr 1fr", gap: "clamp(32px, 6vw, 72px)", alignItems: "start" }}>
+        <div style={{ maxWidth: 1000, margin: "0 auto", display: "grid", gridTemplateColumns: narrow ? "1fr" : "1.3fr 1fr", gap: "clamp(32px, 6vw, 72px)", alignItems: "start" }}>
           <div style={{ display: "flex", flexDirection: "column", gap: 28 }}>
             <p style={{ fontFamily: "var(--font-body)", fontWeight: 600, fontSize: "var(--type-body-lg)", lineHeight: 1.66, margin: 0, color: dark ? "var(--ds-su-blu)" : "var(--ds-inchiostro)", maxWidth: "54ch" }}>{a.body}</p>
             <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
@@ -241,7 +247,7 @@ function Atto({ go, attoId }) {
               {SCHEDULE[a.id].map((day, i) => <DayBlock key={i} day={day} dark={dark} />)}
             </div>
           </div>
-          <div style={{ display: "flex", flexDirection: "column", gap: 18, padding: "26px", borderRadius: "var(--radius-md)", background: dark ? "var(--surface-card)" : "var(--ds-osso)", boxShadow: dark ? "var(--shadow-card-mare)" : "var(--shadow-card)", borderTop: "2px solid var(--ds-turchese)", position: "sticky", top: 88 }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: 18, padding: "26px", borderRadius: "var(--radius-md)", background: dark ? "var(--surface-card)" : "var(--ds-osso)", boxShadow: dark ? "var(--shadow-card-mare)" : "var(--shadow-card)", borderTop: "2px solid var(--ds-turchese)", position: narrow ? "static" : "sticky", top: 88 }}>
             <Eyebrow color={dark ? "var(--ds-turchese)" : "var(--ds-terra-muted)"}>Dettagli</Eyebrow>
             {[["Data", a.date], ["Ora", a.time], ["Luogo", a.place], ["Ingresso", a.id === "forma" ? "Su iscrizione" : "Con prenotazione"]].map(([k, v]) => (
               <div key={k} style={{ display: "flex", justifyContent: "space-between", gap: 16, paddingBottom: 12, borderBottom: "1px solid " + (dark ? "var(--ds-hairline-mare)" : "var(--ds-hairline-terra)") }}>
@@ -300,6 +306,8 @@ function InfoCard({ eyebrow, children, accent = "var(--ds-turchese)" }) {
 
 function Info({ go }) {
   const [sent, setSent] = React.useState(false);
+  const vw = useViewport();
+  const narrow = vw <= 900;
   return (
     <div style={{ background: "var(--ds-sabbia)", color: "var(--ds-inchiostro)", minHeight: "100vh" }}>
       <Nav go={go} current="info" />
@@ -312,7 +320,7 @@ function Info({ go }) {
       </section>
 
       <section style={{ padding: "0 clamp(20px, 5vw, 64px) clamp(56px,8vw,110px)" }}>
-        <div style={{ maxWidth: 1000, margin: "0 auto", display: "grid", gridTemplateColumns: "1.05fr 0.95fr", gap: "clamp(32px,6vw,72px)", alignItems: "start" }}>
+        <div style={{ maxWidth: 1000, margin: "0 auto", display: "grid", gridTemplateColumns: narrow ? "1fr" : "1.05fr 0.95fr", gap: "clamp(32px,6vw,72px)", alignItems: "start" }}>
           {/* Colonna sinistra — prenotazione */}
           <div style={{ display: "flex", flexDirection: "column", gap: 26 }}>
             <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>

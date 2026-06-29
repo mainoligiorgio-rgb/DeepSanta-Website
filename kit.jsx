@@ -2,6 +2,20 @@
    Versioni cosmetiche costruite sui token reali (styles.css).
    In produzione, usa le primitive del bundle (window.DEEPSANTADesignSystem_*). */
 
+/* ---- Responsive: larghezza viewport reattiva (inline-style friendly) ---- */
+function useViewport() {
+  const [w, setW] = React.useState(() => (typeof window !== "undefined" ? window.innerWidth : 1280));
+  React.useEffect(() => {
+    let raf = 0;
+    const on = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(() => setW(window.innerWidth)); };
+    window.addEventListener("resize", on, { passive: true });
+    window.addEventListener("orientationchange", on);
+    return () => { window.removeEventListener("resize", on); window.removeEventListener("orientationchange", on); cancelAnimationFrame(raf); };
+  }, []);
+  return w;
+}
+function useIsMobile(bp = 760) { return useViewport() <= bp; }
+
 function Rays({ opacity = 0.5 }) {
   return (
     <div aria-hidden="true" style={{
@@ -109,4 +123,4 @@ function Lockup({ onClick, light = false }) {
   );
 }
 
-Object.assign(window, { Rays, Veil, ThreeSquares, Eyebrow, Button, Tag, AttoMark, WaterlineWordmark, Lockup });
+Object.assign(window, { useViewport, useIsMobile, Rays, Veil, ThreeSquares, Eyebrow, Button, Tag, AttoMark, WaterlineWordmark, Lockup });
