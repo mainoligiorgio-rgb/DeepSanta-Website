@@ -60,7 +60,7 @@ function Home({ go }) {
       <header className="registro-mare" data-registro="mare" style={{ position: "relative", overflow: "hidden", background: "var(--gradient-discesa)", minHeight: "92vh", display: "flex", flexDirection: "column" }}>
         <Rays opacity={0.6} />
         <Veil />
-        <div style={{ position: "relative", zIndex: 5 }}>
+        <div style={{ position: "relative", zIndex: 40 }}>
           <Nav go={go} current="home" light />
         </div>
         <div style={{ position: "relative", zIndex: 5, flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", textAlign: "center", padding: "40px clamp(20px, 5vw, 64px) 80px", gap: 26 }}>
@@ -81,7 +81,7 @@ function Home({ go }) {
 
       {/* Banda intro — registro terra */}
       <section style={{ background: "var(--ds-sabbia)", color: "var(--ds-inchiostro)", padding: "clamp(56px, 8vw, 110px) clamp(20px, 5vw, 64px)" }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: narrow ? "1fr" : "1.1fr 1fr", gap: "clamp(32px, 6vw, 80px)", alignItems: "center" }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: narrow ? "minmax(0, 1fr)" : "1.1fr 1fr", gap: "clamp(32px, 6vw, 80px)", alignItems: "center" }}>
           <div style={{ display: "flex", flexDirection: "column", gap: 22 }}>
             <Eyebrow mark="dot">Il rito</Eyebrow>
             <h2 className="voce-statement" style={{ margin: 0, fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "var(--type-statement)", lineHeight: 1.05 }}>
@@ -112,7 +112,7 @@ function Home({ go }) {
       {/* Teaser Ex Voto — registro abisso */}
       <section className="registro-abisso" data-registro="abisso" style={{ position: "relative", overflow: "hidden", background: "var(--ds-abisso)", color: "var(--ds-su-abisso)", padding: "clamp(48px, 7vw, 96px) clamp(20px, 5vw, 64px)" }}>
         <Rays opacity={0.3} />
-        <div style={{ position: "relative", maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: narrow ? "1fr" : "1.05fr 0.95fr", gap: "clamp(28px, 5vw, 64px)", alignItems: "center" }}>
+        <div style={{ position: "relative", maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: narrow ? "minmax(0, 1fr)" : "1.05fr 0.95fr", gap: "clamp(28px, 5vw, 64px)", alignItems: "center" }}>
           <div style={{ display: "flex", flexDirection: "column", gap: 18, maxWidth: "52ch" }}>
             <Eyebrow mark="dot" color="var(--ds-turchese)">Ex Voto Vivente</Eyebrow>
             <h2 style={{ margin: 0, fontFamily: "var(--font-display)", fontWeight: 800, fontSize: "var(--type-statement)", lineHeight: 1.04, color: "var(--ds-osso)" }}>
@@ -143,7 +143,7 @@ function DayBlock({ day, dark }) {
       </div>
       <div style={{ display: "flex", flexDirection: "column" }}>
         {day.rows.map(([t, act], i) => (
-          <div key={i} style={{ display: "grid", gridTemplateColumns: "118px 1fr", gap: 18, alignItems: "baseline", padding: "11px 0", borderTop: "1px solid " + (dark ? "var(--ds-hairline-mare)" : "var(--ds-hairline-terra)") }}>
+          <div key={i} style={{ display: "grid", gridTemplateColumns: "104px minmax(0, 1fr)", gap: 14, alignItems: "baseline", padding: "11px 0", borderTop: "1px solid " + (dark ? "var(--ds-hairline-mare)" : "var(--ds-hairline-terra)") }}>
             <span style={{ fontFamily: "var(--font-mono)", fontWeight: 500, fontSize: "0.82rem", letterSpacing: "0.04em", color: dark ? "var(--ds-su-abisso)" : "var(--ds-terra-muted)", whiteSpace: "nowrap" }}>{t}</span>
             <span style={{ fontFamily: "var(--font-body)", fontWeight: 600, fontSize: "1rem", lineHeight: 1.4, color: dark ? "var(--ds-osso)" : "var(--ds-inchiostro)" }}>{act}</span>
           </div>
@@ -189,7 +189,7 @@ function Programma({ go }) {
                     <span aria-hidden="true" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: 40, height: 40, borderRadius: "50%", border: "1.5px solid var(--ds-inchiostro)", fontFamily: "var(--font-mono)", fontSize: "1.4rem", lineHeight: 1, transform: isOpen ? "rotate(45deg)" : "none", transition: "transform var(--dur) var(--ease-tide)" }}>+</span>
                   </button>
                   {isOpen && (
-                    <div style={{ padding: "8px 10px 36px", display: "grid", gridTemplateColumns: (!narrow && SCHEDULE[a.id].length > 1) ? "1fr 1fr" : "1fr", gap: "clamp(28px, 5vw, 56px)" }}>
+                    <div style={{ padding: "8px 10px 36px", display: "grid", gridTemplateColumns: (!narrow && SCHEDULE[a.id].length > 1) ? "minmax(0, 1fr) minmax(0, 1fr)" : "minmax(0, 1fr)", gap: "clamp(28px, 5vw, 56px)" }}>
                       {SCHEDULE[a.id].map((day, i) => <DayBlock key={i} day={day} dark={false} />)}
                       <div style={{ gridColumn: "1 / -1", marginTop: 6 }}>
                         <button onClick={() => go("atto", a.id)} style={{ all: "unset", cursor: "pointer", display: "inline-flex", alignItems: "center", gap: 8, fontFamily: "var(--font-mono)", fontSize: "0.78rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--ds-blu)", borderBottom: "2px solid var(--ds-turchese)", paddingBottom: 3 }}>
@@ -239,7 +239,7 @@ function Atto({ go, attoId }) {
         </div>
       </header>
       <section style={{ padding: "clamp(40px, 6vw, 80px) clamp(20px, 5vw, 64px)" }}>
-        <div style={{ maxWidth: 1000, margin: "0 auto", display: "grid", gridTemplateColumns: narrow ? "1fr" : "1.3fr 1fr", gap: "clamp(32px, 6vw, 72px)", alignItems: "start" }}>
+        <div style={{ maxWidth: 1000, margin: "0 auto", display: "grid", gridTemplateColumns: narrow ? "minmax(0, 1fr)" : "1.3fr 1fr", gap: "clamp(32px, 6vw, 72px)", alignItems: "start" }}>
           <div style={{ display: "flex", flexDirection: "column", gap: 28 }}>
             <p style={{ fontFamily: "var(--font-body)", fontWeight: 600, fontSize: "var(--type-body-lg)", lineHeight: 1.66, margin: 0, color: dark ? "var(--ds-su-blu)" : "var(--ds-inchiostro)", maxWidth: "54ch" }}>{a.body}</p>
             <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
@@ -274,7 +274,7 @@ function TicketButton({ onClick }) {
       style={{ all: "unset", cursor: "pointer", display: "block", width: "100%", maxWidth: 520, position: "relative", filter: "drop-shadow(0 16px 30px rgba(0,48,96,0.20))", transform: hov ? "translateY(-3px)" : "none", transition: "transform var(--dur-fast) var(--ease-tide)" }}>
       <span style={notch("left")} />
       <span style={notch("right")} />
-      <span style={{ display: "grid", gridTemplateColumns: "auto 1fr", minHeight: 152, borderRadius: 14, overflow: "hidden" }}>
+      <span style={{ display: "grid", gridTemplateColumns: "auto minmax(0, 1fr)", minHeight: 152, borderRadius: 14, overflow: "hidden" }}>
         {/* tagliando */}
         <span style={{ display: "flex", alignItems: "center", justifyContent: "center", padding: "0 20px", background: "var(--ds-blu)", borderRight: "2px dashed color-mix(in srgb, var(--ds-osso) 50%, var(--ds-blu))" }}>
           <span style={{ writingMode: "vertical-rl", transform: "rotate(180deg)", fontFamily: "var(--font-display)", fontWeight: 800, fontSize: "1rem", letterSpacing: "0.34em", textTransform: "uppercase", color: "var(--ds-osso)" }}>
@@ -282,11 +282,11 @@ function TicketButton({ onClick }) {
           </span>
         </span>
         {/* corpo */}
-        <span style={{ display: "flex", flexDirection: "column", justifyContent: "center", gap: 10, padding: "26px 28px", background: "var(--ds-osso)", color: "var(--ds-inchiostro)" }}>
+        <span style={{ display: "flex", flexDirection: "column", justifyContent: "center", gap: 10, padding: "26px 28px", background: "var(--ds-osso)", color: "var(--ds-inchiostro)", minWidth: 0 }}>
           <span style={{ fontFamily: "var(--font-mono)", fontWeight: 500, fontSize: "var(--type-technical)", letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--ds-terra-muted)" }}>Ammissione · una discesa</span>
-          <span style={{ fontFamily: "var(--font-display)", fontWeight: 800, fontSize: "1.9rem", lineHeight: 0.98, textTransform: "uppercase" }}>Prenota la tua immersione</span>
+          <span style={{ fontFamily: "var(--font-display)", fontWeight: 800, fontSize: "clamp(1.4rem, 5.4vw, 1.9rem)", lineHeight: 0.98, textTransform: "uppercase", overflowWrap: "break-word" }}>Prenota la tua immersione</span>
           <span style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 14, marginTop: 4 }}>
-            <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.78rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--ds-blu)" }}>03—08 Giu 2026 · Pescheria</span>
+            <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.78rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--ds-blu)", minWidth: 0 }}>03—08 Giu 2026 · Pescheria</span>
             <span style={{ fontFamily: "var(--font-mono)", fontSize: "1.4rem", color: "var(--ds-corallo)", transform: hov ? "translateX(4px)" : "none", transition: "transform var(--dur-fast) var(--ease-tide)" }}>→</span>
           </span>
         </span>
@@ -320,7 +320,7 @@ function Info({ go }) {
       </section>
 
       <section style={{ padding: "0 clamp(20px, 5vw, 64px) clamp(56px,8vw,110px)" }}>
-        <div style={{ maxWidth: 1000, margin: "0 auto", display: "grid", gridTemplateColumns: narrow ? "1fr" : "1.05fr 0.95fr", gap: "clamp(32px,6vw,72px)", alignItems: "start" }}>
+        <div style={{ maxWidth: 1000, margin: "0 auto", display: "grid", gridTemplateColumns: narrow ? "minmax(0, 1fr)" : "1.05fr 0.95fr", gap: "clamp(32px,6vw,72px)", alignItems: "start" }}>
           {/* Colonna sinistra — prenotazione */}
           <div style={{ display: "flex", flexDirection: "column", gap: 26 }}>
             <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
@@ -342,7 +342,7 @@ function Info({ go }) {
                 {[["Chi", "Solo adulti"], ["Profondità", "25 metri"], ["Accompagnamento", "Con guida certificata"]].map(([k, v]) => (
                   <div key={k} style={{ display: "flex", justifyContent: "space-between", gap: 16, padding: "11px 0", borderBottom: "1px solid var(--ds-hairline-terra)" }}>
                     <Eyebrow color="var(--ds-terra-muted)">{k}</Eyebrow>
-                    <span style={{ fontFamily: "var(--font-body)", fontWeight: 700, fontSize: "1rem" }}>{v}</span>
+                    <span style={{ fontFamily: "var(--font-body)", fontWeight: 700, fontSize: "1rem", minWidth: 0, textAlign: "right" }}>{v}</span>
                   </div>
                 ))}
               </div>
